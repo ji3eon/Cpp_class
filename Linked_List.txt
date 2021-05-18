@@ -1,0 +1,22 @@
+Class Node:
+   field
+      value
+      next
+   method
+      getValue
+      getNext
+      setValue
+      setNext
+      getInstance
+         return new Node(); //새 노드 생성
+Class Single_Linked_List(node 상속)
+   field
+      head
+   method
+      head=getInstance()
+Class Double_Linked_List(node 상속)
+   field
+ 
+   method
+      앞에 추가 할 수 있는 함수
+      앞에 삭제 할 수 있는 함수
