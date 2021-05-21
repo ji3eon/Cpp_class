@@ -1,0 +1,24 @@
+SingleLinkedList-sll
+SingleCircularLinkedList-scl
+DoubleLinkedList-dll
+DoubleCircularLinkedList-dcl
+
+sll vs scl
+중복되는 점 - single으로 prev를 작성하지 않아도 됨
+차이점 - sll의 next는 null, scl의 next는 head
+           scl은 circular로 마지막 노드는 head로 구현 -> push_back, pop_back할 때 next를 잘 조정해 주어야 함
+sll vs dll
+중복되는 점 - 마지막 노드의 next는 null
+차이점 - dll은 prev와 next 포인터가 있음, 노드 앞으로 뒤로 이동 가능
+
+dll vs dcl
+중복되는 점 - double로 이중으로 연결되도록 구현해 주어야 함, prev와 next 값을 조정 하면 리스트 어느 곳에서나 추가 삭제 가능
+차이점 - dll의 첫 노드 prev는 null, 마지막노드 next는 null
+	dcl의 첫노드 prev는 마지막 노드, 마지막 노드 next는 첫노드
+
+scl vs dcl
+중복되는 점 - 마지막 노드의 next는 head
+차이점 - scl은 prev가 없음
+
+
+
