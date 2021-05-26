@@ -1,3 +1,5 @@
+//README : 나머지는 모두 동작, DoubleCircularLinkedList에 pop_front, pop_back부분이 동작하지 않음
+
 #include <iostream>
 using namespace std;
 
@@ -271,31 +273,21 @@ public:
 		}
 	}
 	void pop_back() {
+		Node* pNode = this->head;
 		if (isEmpty()) {
 			cout << "Head is empty" << '\n';
 		}
-		/*else {
-			for (Node* pNode = this->head, *prev = nullptr; true; prev = pNode, pNode = pNode->getNext()) {
-				if (pNode->getNext() == head) {
-					if (prev == nullptr) { delete pNode; }
-					else {
-						pNode->getPrev()->setNext(head);
-						delete pNode;
-					}
-				}break;
-			}
-		}*/
 		else {
-			for (Node* pNode = this->head; true; pNode = pNode->getNext()) {
-				if(pNode-)
-				else(pNode->getNext() == head) {
-					pNode->getPrev()->setNext(head);
+			for(pNode; true; pNode = pNode->getNext()) {
+				if (pNode->getNext() == head) { //노드가 하나만 있을 때 
+					(pNode->getPrev())->setNext(head);
 					delete pNode;
+					break;
 				}
 			}
 		}
 	}
-	void push_front(int value) {
+	void push_front(int value) { //FIXME 실행이 안되요..
 		Node* newNode = createNode(value);
 
 		if (isEmpty()) { //노드가 하나도 없을 때 
@@ -304,9 +296,31 @@ public:
 			newNode->setPrev(head);
 		}
 		else {
-			newNode->setPrev(head->getPrev());
-			newNode->setNext(head);
+			Node* pNode = this->head;
+			Node* lNode; //마지막노드
+			for (pNode; true; pNode=pNode->getNext()) {
+				if (pNode->getNext() == head)
+					lNode = pNode;
+			}
+			newNode->setNext(pNode);
+			newNode->setPrev(lNode); //newNode의 Prev는 마지막 노드를 가리키도록 해야함.
+			pNode->setPrev(newNode);
 			head = newNode;
+		}
+	}
+	void pop_front() { //FIXME 실행이 안되요..
+		if (isEmpty()) {
+			cout << "Head is empty" << '\n';
+		}
+		else {
+			Node* pNode = this->head;
+			Node* lNode; //마지막노드
+			for (pNode; true; pNode = pNode->getNext()) {
+				if (pNode->getNext() == head)
+					lNode = pNode;
+			}
+			(pNode->getNext())->setPrev(lNode);
+			delete pNode;
 		}
 	}
 	void print() {
@@ -316,7 +330,6 @@ public:
 		cout << pNode->getValue() << '\n';
 
 	}
-	
 };
 
 int main() {
@@ -338,12 +351,14 @@ int main() {
 	dll.print();*/
 
 	DoubleCircularLinkedList dcl;
-	dcl.push_back(0);
 	dcl.push_back(1);
 	dcl.push_back(2);
 	dcl.push_back(3);
-	dcl.pop_back();
-	//dcl.push_front(4);
+	dcl.pop_front();
+	//dcl.pop_back();
+	//dcl.pop_front();
+	//dcl.push_front(3);
+	//
 	dcl.print();
 
 }
